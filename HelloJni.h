@@ -39,6 +39,14 @@ JNIEXPORT jstring JNICALL Java_HelloJni_accessField
 JNIEXPORT void JNICALL Java_HelloJni_accessStaticField
   (JNIEnv *, jobject);
 
+/*
+ * Class:     HelloJni
+ * Method:    accessMethod
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_HelloJni_accessMethod
+  (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif

@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class HelloJni{
     static{
         System.loadLibrary("HelloJni");
@@ -8,6 +10,7 @@ public class HelloJni{
     public static int count = 5;
     public native String accessField();
     public native void accessStaticField();
+    public native void accessMethod();
     public static void main(String[] args){
         System.out.println(getStringFromCStatic());
         HelloJni hello = new HelloJni();
@@ -18,5 +21,12 @@ public class HelloJni{
         System.out.println("change before count: " + count);
         hello.accessStaticField();
         System.out.println("change after count: " + count);
+        hello.accessMethod();
+    }
+
+    public int getRandomInt(int max){
+        int ret = new Random().nextInt(max);
+        System.out.println("Called from java, ret = " + ret);
+        return ret;
     }
 }

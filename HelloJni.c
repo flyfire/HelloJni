@@ -30,3 +30,10 @@ JNIEXPORT void JNICALL Java_HelloJni_accessStaticField(JNIEnv * env, jobject obj
     count++;
     (*env)->SetStaticIntField(env, jclz, fid, count);
 }
+
+JNIEXPORT void JNICALL Java_HelloJni_accessMethod(JNIEnv * env, jobject obj){
+    jclass jclz = (*env)->GetObjectClass(env, obj);
+    jmethodID mid = (*env)->GetMethodID(env, jclz, "getRandomInt", "(I)I");
+    jint random = (*env)->CallIntMethod(env, obj, mid, 200);
+    printf("C random = %d\n", random);
+}
