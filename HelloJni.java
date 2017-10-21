@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.UUID;
 
 public class HelloJni{
     static{
@@ -11,6 +12,7 @@ public class HelloJni{
     public native String accessField();
     public native void accessStaticField();
     public native void accessMethod();
+    public native void accessStaticMethod();
     public static void main(String[] args){
         System.out.println(getStringFromCStatic());
         HelloJni hello = new HelloJni();
@@ -22,11 +24,18 @@ public class HelloJni{
         hello.accessStaticField();
         System.out.println("change after count: " + count);
         hello.accessMethod();
+        hello.accessStaticMethod();
     }
 
     public int getRandomInt(int max){
         int ret = new Random().nextInt(max);
         System.out.println("Called from java, ret = " + ret);
         return ret;
+    }
+
+    static String getUUID(){
+        String uuid = UUID.randomUUID().toString();
+        System.out.println("Called from java, uuid = " + uuid);
+        return uuid;
     }
 }

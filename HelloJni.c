@@ -37,3 +37,19 @@ JNIEXPORT void JNICALL Java_HelloJni_accessMethod(JNIEnv * env, jobject obj){
     jint random = (*env)->CallIntMethod(env, obj, mid, 200);
     printf("C random = %d\n", random);
 }
+
+JNIEXPORT void JNICALL Java_HelloJni_accessStaticMethod(JNIEnv * env, jobject obj){
+    jclass jclz = (*env)->GetObjectClass(env, obj);
+    jmethodID mid = (*env)->GetStaticMethodID(env, jclz, "getUUID","()Ljava/lang/String;");
+    jstring uuid = (*env)->CallStaticObjectMethod(env, jclz, mid);
+    char * uuid_c = (*env)->GetStringUTFChars(env, uuid, NULL);
+    printf("uuid_c : %s\n", uuid_c);
+    char filename[100];
+    sprintf(filename, "%s.txt", uuid_c);
+    printf("filename : %s\n", filename);
+
+    FILE *fp = fopen(filename, "w");
+    fputs("Solarex", fp);
+    fclose(fp);
+    printf("write file success\n");
+}
