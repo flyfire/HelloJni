@@ -53,3 +53,39 @@ JNIEXPORT void JNICALL Java_HelloJni_accessStaticMethod(JNIEnv * env, jobject ob
     fclose(fp);
     printf("write file success\n");
 }
+
+JNIEXPORT jobject JNICALL Java_HelloJni_accessConstructor(JNIEnv * env, jobject obj){
+    jclass jclz = (*env)->FindClass(env, "java/util/Date");
+    jmethodID mid = (*env)->GetMethodID(env, jclz, "<init>", "()V");
+    jobject date_obj = (*env)->NewObject(env, jclz, mid);
+    jmethodID gettime_mid = (*env)->GetMethodID(env, jclz, "getTime", "()J");
+    jlong time = (*env)->CallLongMethod(env, date_obj, gettime_mid);
+    printf("c time: %lld\n", time);
+    return date_obj;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

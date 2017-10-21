@@ -55,6 +55,14 @@ JNIEXPORT void JNICALL Java_HelloJni_accessMethod
 JNIEXPORT void JNICALL Java_HelloJni_accessStaticMethod
   (JNIEnv *, jobject);
 
+/*
+ * Class:     HelloJni
+ * Method:    accessConstructor
+ * Signature: ()Ljava/util/Date;
+ */
+JNIEXPORT jobject JNICALL Java_HelloJni_accessConstructor
+  (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif
