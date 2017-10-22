@@ -67,6 +67,7 @@ JNIEXPORT jobject JNICALL Java_HelloJni_accessConstructor(JNIEnv * env, jobject 
 JNIEXPORT jstring JNICALL Java_HelloJni_accessUTFChars(JNIEnv * env, jobject obj, jstring str){
     char * c_str = (*env)->GetStringUTFChars(env, str, NULL);
     printf("c_str: %s\n", c_str);
+    (*env)->ReleaseStringChars(env, str, c_str);
     c_str = "北上广深杭";
     jclass str_clz = (*env)->FindClass(env, "java/lang/String");
     jmethodID jmid = (*env)->GetMethodID(env, str_clz, "<init>", "([BLjava/lang/String;)V");
