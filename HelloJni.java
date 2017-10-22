@@ -16,6 +16,7 @@ public class HelloJni{
     public native void accessStaticMethod();
     public native Date accessConstructor();
     public native String accessUTFChars(String str);
+    public native void sortArray(int[] arr);
     public static void main(String[] args){
         System.out.println(getStringFromCStatic());
         HelloJni hello = new HelloJni();
@@ -31,6 +32,11 @@ public class HelloJni{
         Date date = hello.accessConstructor();
         System.out.println("call from java time = " + date.getTime() + "");
         System.out.println("call from java get string from c: " + hello.accessUTFChars("深圳"));
+        int[] arr = {5, 3, 8, 81, 0};
+        hello.sortArray(arr);
+        for(int i = 0; i < arr.length; i++){
+            System.out.println(arr[i]);
+        }
     }
 
     public int getRandomInt(int max){

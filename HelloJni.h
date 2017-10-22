@@ -71,6 +71,14 @@ JNIEXPORT jobject JNICALL Java_HelloJni_accessConstructor
 JNIEXPORT jstring JNICALL Java_HelloJni_accessUTFChars
   (JNIEnv *, jobject, jstring);
 
+/*
+ * Class:     HelloJni
+ * Method:    sortArray
+ * Signature: ([I)V
+ */
+JNIEXPORT void JNICALL Java_HelloJni_sortArray
+  (JNIEnv *, jobject, jintArray);
+
 #ifdef __cplusplus
 }
 #endif

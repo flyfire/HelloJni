@@ -78,6 +78,21 @@ JNIEXPORT jstring JNICALL Java_HelloJni_accessUTFChars(JNIEnv * env, jobject obj
     return (*env)->NewObject(env, str_clz, jmid, bytes, charset);
 }
 
+JNIEXPORT void JNICALL Java_HelloJni_sortArray(JNIEnv * env, jobject obj, jintArray arr){
+    int compare(jint *a, jint *b);
+    jint *elements = (*env)->GetIntArrayElements(env, arr, NULL);
+    if ( elements == NULL){
+        return;
+    }
+    int len = (*env)->GetArrayLength(env, arr);
+    qsort(elements, len, sizeof(jint), compare);
+    (*env)->ReleaseIntArrayElements(env, arr, elements, JNI_COMMIT);
+}
+
+int compare(jint *a, jint *b){
+    return *a - *b;
+}
+
 
 
 
