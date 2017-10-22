@@ -64,6 +64,19 @@ JNIEXPORT jobject JNICALL Java_HelloJni_accessConstructor(JNIEnv * env, jobject 
     return date_obj;
 }
 
+JNIEXPORT jstring JNICALL Java_HelloJni_accessUTFChars(JNIEnv * env, jobject obj, jstring str){
+    char * c_str = (*env)->GetStringUTFChars(env, str, NULL);
+    printf("c_str: %s\n", c_str);
+    c_str = "北上广深杭";
+    jclass str_clz = (*env)->FindClass(env, "java/lang/String");
+    jmethodID jmid = (*env)->GetMethodID(env, str_clz, "<init>", "([BLjava/lang/String;)V");
+    //jstring -> jbyte array
+    jbyteArray bytes = (*env)->NewByteArray(env, strlen(c_str));
+    (*env)->SetByteArrayRegion(env, bytes, 0, strlen(c_str), c_str);
+    jstring charset = (*env)->NewStringUTF(env, "UTF-8");
+    return (*env)->NewObject(env, str_clz, jmid, bytes, charset);
+}
+
 
 
 

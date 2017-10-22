@@ -63,6 +63,14 @@ JNIEXPORT void JNICALL Java_HelloJni_accessStaticMethod
 JNIEXPORT jobject JNICALL Java_HelloJni_accessConstructor
   (JNIEnv *, jobject);
 
+/*
+ * Class:     HelloJni
+ * Method:    accessUTFChars
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_HelloJni_accessUTFChars
+  (JNIEnv *, jobject, jstring);
+
 #ifdef __cplusplus
 }
 #endif
