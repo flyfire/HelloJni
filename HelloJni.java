@@ -17,6 +17,7 @@ public class HelloJni{
     public native Date accessConstructor();
     public native String accessUTFChars(String str);
     public native void sortArray(int[] arr);
+    public native String[] getStringArray(int size);
     public static void main(String[] args){
         System.out.println(getStringFromCStatic());
         HelloJni hello = new HelloJni();
@@ -36,6 +37,10 @@ public class HelloJni{
         hello.sortArray(arr);
         for(int i = 0; i < arr.length; i++){
             System.out.println(arr[i]);
+        }
+        String[] cstrs = hello.getStringArray(10);
+        for(int j = 0; j < cstrs.length; j++) {
+            System.out.println(cstrs[j]);
         }
     }
 

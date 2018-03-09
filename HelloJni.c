@@ -93,6 +93,27 @@ int compare(jint *a, jint *b){
     return *a - *b;
 }
 
+JNIEXPORT jobjectArray JNICALL Java_HelloJni_getStringArray(JNIEnv *env, jobject obj, jint size) {
+    jobjectArray result;
+    jclass str_clz;
+    int i;
+    str_clz = (*env)->FindClass(env, "java/lang/String");
+    if(str_clz == NULL){
+        return NULL;
+    }
+    result = (*env)->NewObjectArray(env, size, str_clz, obj);
+    
+    for(i = 0; i < size; i++){
+        char *c_char = (char*)malloc(sizeof(char)*50);
+        memset(c_char,0, 50);
+        sprintf(c_char, "Solarex %d", i);
+        jstring str = (*env)->NewStringUTF(env, c_char);
+        (*env)->SetObjectArrayElement(env, result, i, str);
+        free(c_char);
+        c_char = NULL;
+    }
+    return result;
+}
 
 
 
